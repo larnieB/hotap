@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hotap Collections — Thika</title>
+  <meta name="description" content="Hotap Collections — Luxury fashion from Thika." />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ink:#0b0b0b; --paper:#ffffff; }
+    html, body { height: 100%; background: var(--paper); color: var(--ink); }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"; }
+
+    /* ------------ LOADER ------------- */
+    .loader-wrap{position:fixed;inset:0;background:#0b0b0b;color:#fff;z-index:9999;display:grid;place-items:center;overflow:hidden}
+    .loader-word{font-family:"Playfair Display",serif;font-size:clamp(38px,7vw,88px);letter-spacing:.08em;text-transform:uppercase;position:relative;display:inline-block}
+    .loader-word .char{display:inline-block;transform:translateY(120%);opacity:0;animation:rise .8s cubic-bezier(.2,.8,.2,1) forwards}
+    .loader-word .char:nth-child(1){animation-delay:.05s}.loader-word .char:nth-child(2){animation-delay:.10s}.loader-word .char:nth-child(3){animation-delay:.15s}
+    .loader-word .char:nth-child(4){animation-delay:.20s}.loader-word .char:nth-child(5){animation-delay:.25s}.loader-word .char:nth-child(6){animation-delay:.30s}
+    .loader-word .char:nth-child(7){animation-delay:.35s}.loader-word .char:nth-child(8){animation-delay:.40s}.loader-word .char:nth-child(9){animation-delay:.45s}
+    .loader-word .char:nth-child(10){animation-delay:.50s}.loader-word .char:nth-child(11){animation-delay:.55s}.loader-word .char:nth-child(12){animation-delay:.60s}
+    .loader-word .char:nth-child(13){animation-delay:.65s}.loader-word .char:nth-child(14){animation-delay:.70s}.loader-word .char:nth-child(15){animation-delay:.75s}
+    .loader-word .char:nth-child(16){animation-delay:.80s}.loader-word .char:nth-child(17){animation-delay:.85s}
+    @keyframes rise{0%{transform:translateY(120%);opacity:0;filter:blur(6px)}60%{opacity:1;filter:blur(0)}100%{transform:translateY(0);opacity:1}}
+    .loader-accent{position:absolute;inset:auto auto 8% auto;width:180px;height:1px;background:linear-gradient(90deg,transparent,#ffffff,transparent);animation:shimmer 1.8s linear infinite}
+    @keyframes shimmer{0%{transform:translateX(-120%);opacity:.2}50%{opacity:.9}100%{transform:translateX(120%);opacity:.2}}
+    .loader-fade{animation:fadeOut .7s ease .2s forwards}
+    @keyframes fadeOut{to{opacity:0;visibility:hidden}}
+
+    /* --------- HERO ---------- */
+    .hero{position:relative;height:100vh;min-height:540px;overflow:hidden}
+    .hero-slide{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity 1.2s ease-in-out;transform:scale(1.04)}
+    .hero-slide.active{opacity:1;transform:scale(1)}
+    .hero-scrim{position:absolute;inset:0;background:linear-gradient(to bottom, rgba(0,0,0,.15), rgba(0,0,0,.35) 65%, rgba(0,0,0,.45));pointer-events:none}
+    .brand-giant{font-family:"Playfair Display",serif;letter-spacing:.12em;color:rgba(255,255,255,.95);font-size:clamp(64px,16vw,220px);line-height:1;text-transform:uppercase}
+
+    /* --------- GRID OVERLAY WORD -------- */
+    .grid-word{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
+    .grid-word h2{font-family:"Playfair Display",serif;font-size:clamp(72px,18vw,240px);letter-spacing:.14em;color:rgba(255,255,255,.92);text-transform:uppercase;line-height:1}
+
+    /* Hide scrollbar flash on loader removal */
+    body.loader-on{overflow:hidden}
+
+    /* ======= SIDEBAR MENU ======= */
+    body.menu-open{overflow:hidden}
+    .menu-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);backdrop-filter:blur(4px);z-index:40;opacity:0;pointer-events:none;transition:opacity .3s ease}
+    .menu-overlay.active{opacity:1;pointer-events:auto}
+    .side-menu{position:fixed;top:0;left:0;height:100%;width:280px;background:#fff;z-index:50;transform:translateX(-100%);transition:transform .35s ease;display:flex;flex-direction:column;padding:2rem 1.25rem;box-shadow:4px 0 16px rgba(0,0,0,.12)}
+    .side-menu.active{transform:translateX(0)}
+    .side-link{display:block;font-size:1.125rem;font-weight:600;padding:.5rem 0}
+  </style>
+</head>
+<body class="bg-white text-neutral-900">
+
+  <!-- ============== LOADER (first visit only) ============== -->
+  <div id="loader" class="loader-wrap select-none">
+    <div class="text-center">
+      <div class="loader-word">
+        <span class="char">H</span><span class="char">o</span><span class="char">t</span><span class="char">a</span><span class="char">p</span>
+        <span class="char">&nbsp;</span>
+        <span class="char">C</span><span class="char">o</span><span class="char">l</span><span class="char">l</span><span class="char">e</span><span class="char">c</span><span class="char">t</span><span class="char">i</span><span class="char">o</span><span class="char">n</span><span class="char">s</span>
+        <span class="loader-accent"></span>
+      </div>
+      <p class="mt-4 text-sm/relaxed tracking-wide text-neutral-300">Thika — Curated Fashion</p>
+    </div>
+  </div>
+
+  <!-- ============== ANNOUNCEMENT BAR ============== -->
+  <div class="w-full bg-neutral-900 text-white text-center text-xs sm:text-sm tracking-wide py-2">
+    Shop the Hotap Holiday Edit — Free pickup in Thika CBD
+  </div>
+
+  <!-- ============== NAVBAR ============== -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+      <div class="text-transparent select-none">Hotap</div>
+
+      <nav class="flex items-center gap-6">
+        <!-- Bag -->
+        <button aria-label="Open bag" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7h12l-1 12H7L6 7z"/><path stroke-width="1.5" d="M9 7a3 3 0 116 0"/>
+          </svg>
+        </button>
+        <!-- Search -->
+        <button aria-label="Search" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <circle cx="11" cy="11" r="7" stroke-width="1.5"/><path stroke-width="1.5" d="M20 20l-2.8-2.8"/>
+          </svg>
+        </button>
+        <!-- Menu (IMPORTANT: id="openMenu") -->
+        <button id="openMenu" aria-label="Open menu" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/>
+          </svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== MENU OVERLAY & SIDEBAR ===== -->
+  <div id="menuOverlay" class="menu-overlay" aria-hidden="true"></div>
+
+  <aside id="sideMenu" class="side-menu" aria-hidden="true" aria-label="Main">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="font-bold text-lg tracking-wide">Menu</h2>
+      <button id="closeMenu" class="text-neutral-500 hover:text-neutral-800" aria-label="Close menu">✕</button>
+    </div>
+    <nav class="space-y-3">
+      <a href="shop.html" class="side-link hover:text-neutral-800">Shop</a>
+      <a href="about.html" class="side-link hover:text-neutral-800">About</a>
+      <a href="contact.html" class="side-link hover:text-neutral-800">Contacts</a>
+      <a href="pickup_location.html" class="side-link hover:text-neutral-800">Pick-up Location</a>
+    </nav>
+    <div class="mt-auto pt-10 text-sm text-neutral-500">
+      © <span id="year"></span> Hotap Collections
+    </div>
+  </aside>
+
+  <!-- ============== HERO ============== -->
+  <section class="hero relative" id="hero">
+    <div class="hero-slide active" style='background-image:url("WhatsApp Image 2025-11-01 at 14.58.36.jpeg");'></div>
+    <div class="hero-slide" style='background-image:url("rosa___.jpg");'></div>
+    <div class="hero-slide" style='background-image:url("Plus\ Floral\ Print\ Cold\ Shoulder\ Ruffle\ Hem\ Summer….jpg");'></div>
+    <div class="hero-scrim"></div>
+
+    <div class="absolute inset-0 flex items-center justify-center z-20">
+      <h1 class="brand-giant tracking-[0.3em] text-white select-none">HOTAP</h1>
+    </div>
+
+    <div class="absolute bottom-6 left-0 right-0 z-20 grid place-items-center">
+      <a href="#categories" class="text-white/90 text-xs tracking-widest uppercase">Shop Categories</a>
+    </div>
+  </section>
+
+  <!-- ============== CATEGORIES ============== -->
+  <section id="categories" class="relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 md:py-24 relative">
+      <div class="grid-word pointer-events-none">
+        <h2>HOTAP</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="undefined (1).jpg" alt="Women's Handbags" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">Women’s Handbags</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.56 (3).jpeg" alt="Quality dresses" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">Quality dresses</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.25.03.jpeg" alt="Shoes" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">shoes</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.54 (2).jpeg" alt="black tracksuit" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">black tracksuit</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.58 (2).jpeg" alt="white tracksuit" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">white tracksuit</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.54 (3).jpeg" alt="gucci suits" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">gucci suits</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.54 (1).jpeg" alt="hoodies" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">hoddies</p>
+        </a>
+
+        <a href="#" class="block group">
+          <div class="aspect-[3/4] overflow-hidden">
+            <img src="WhatsApp Image 2025-11-01 at 14.24.59 (2).jpeg" alt="men's tracksuits" class="w-full h-full object-cover group-hover:scale-105 transition duration-700" />
+          </div>
+          <p class="mt-4 text-center text-sm md:text-base">men,s tracksuits</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============== FOOTER ============== -->
+  <footer class="border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-neutral-600 flex flex-col sm:flex-row gap-4 sm:gap-8 items-center justify-between">
+      <p>© <span id="year"></span> Hotap Collections — Thika</p>
+      <p class="opacity-80">Crafted for a luxury browsing experience</p>
+    </div>
+  </footer>
+
+  <!-- ============== JS ============== -->
+  <script>
+    // ---------- Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ---------- Loader: show only on first visit per session
+    (function manageLoader(){
+      const key = 'hotap_session_seen';
+      const loader = document.getElementById('loader');
+      if (sessionStorage.getItem(key)) {
+        loader.style.display = 'none';
+        document.body.classList.remove('loader-on');
+      } else {
+        document.body.classList.add('loader-on');
+        setTimeout(() => {
+          loader.classList.add('loader-fade');
+          document.body.classList.remove('loader-on');
+          setTimeout(()=> loader.remove(), 800);
+        }, 1900);
+        sessionStorage.setItem(key, '1');
+      }
+    })();
+
+    // ---------- Hero slider (image crossfade)
+    (function heroSlider(){
+      const slides = [...document.querySelectorAll('.hero-slide')];
+      let i = 0;
+      setInterval(()=>{
+        slides[i].classList.remove('active');
+        i = (i + 1) % slides.length;
+        slides[i].classList.add('active');
+      }, 4800);
+    })();
+
+    // ---------- Sidebar Menu (robust)
+    (function sideMenuController(){
+      const openBtn = document.getElementById('openMenu');
+      const closeBtn = document.getElementById('closeMenu');
+      const menu = document.getElementById('sideMenu');
+      const overlay = document.getElementById('menuOverlay');
+
+      function openMenu(){
+        menu.classList.add('active');
+        overlay.classList.add('active');
+        document.body.classList.add('menu-open');
+        menu.setAttribute('aria-hidden','false');
+        overlay.setAttribute('aria-hidden','false');
+      }
+      function closeMenu(){
+        menu.classList.remove('active');
+        overlay.classList.remove('active');
+        document.body.classList.remove('menu-open');
+        menu.setAttribute('aria-hidden','true');
+        overlay.setAttribute('aria-hidden','true');
+      }
+
+      // Safety: if the button is missing for any reason, don’t crash
+      if (openBtn) openBtn.addEventListener('click', openMenu);
+      if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+      if (overlay) overlay.addEventListener('click', closeMenu);
+
+      // Esc to close
+      document.addEventListener('keydown', (e)=>{
+        if (e.key === 'Escape') closeMenu();
+      });
+    })();
+  </script>
+</body>
+</html>

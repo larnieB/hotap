@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shop — Hotap Collections</title>
+  <meta name="description" content="Shop luxury fashion from Hotap Collections, Thika’s premium designer hub." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ink:#0b0b0b; --paper:#fff; }
+    body { font-family: Inter, system-ui; color: var(--ink); background: var(--paper); }
+
+    body.menu-open { overflow: hidden; }
+    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      z-index: 40; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .menu-overlay.active { opacity: 1; pointer-events: all; }
+    .side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background:#fff;
+      z-index: 50; transform: translateX(-100%); transition: transform .35s; display: flex; flex-direction: column;
+      padding: 2rem 1.25rem; box-shadow: 4px 0 16px rgba(0,0,0,.12); }
+    .side-menu.active { transform: translateX(0); }
+    .side-link { display: block; font-size: 1.125rem; font-weight: 600; padding: .5rem 0; }
+
+    .shop-hero {
+      background: url("https://images.unsplash.com/photo-1521334884684-d80222895322?q=80&w=1920&auto=format&fit=crop") center/cover;
+      height: 60vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .shop-hero::after {
+      content: "";
+      position: absolute; inset: 0; background: rgba(0,0,0,0.35);
+    }
+    .shop-hero h1 {
+      position: relative; z-index: 10; color:#fff; font-family:"Playfair Display",serif;
+      text-transform: uppercase; font-size:clamp(42px,8vw,96px); letter-spacing:.15em;
+    }
+
+    .product-card img { transition: transform .7s ease; }
+    .product-card:hover img { transform: scale(1.05); }
+    .product-card .name {
+      font-family:"Playfair Display",serif;
+      font-size:1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+      <a href="index.html" class="text-white font-semibold tracking-widest uppercase">Hotap</a>
+      <nav class="flex items-center gap-6">
+        <button aria-label="Open bag" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7h12l-1 12H7L6 7z"/><path stroke-width="1.5" d="M9 7a3 3 0 116 0"/></svg>
+        </button>
+        <button aria-label="Search" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="1.5"/><path stroke-width="1.5" d="M20 20l-2.8-2.8"/></svg>
+        </button>
+        <button id="openMenu" aria-label="Open menu" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== OVERLAY & SIDE MENU ===== -->
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <aside id="sideMenu" class="side-menu">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="font-bold text-lg tracking-wide">Menu</h2>
+      <button id="closeMenu" class="text-neutral-500 hover:text-neutral-800">✕</button>
+    </div>
+    <nav class="space-y-3">
+      <a href="shop.html" class="side-link hover:text-neutral-800">Shop</a>
+      <a href="about.html" class="side-link hover:text-neutral-800">About</a>
+      <a href="contacts.html" class="side-link hover:text-neutral-800">Contacts</a>
+      <a href="pickup_location.html" class="side-link hover:text-neutral-800">Pick-up Location</a>
+    </nav>
+  </aside>
+
+  <!-- ===== HERO ===== -->
+  <section class="shop-hero">
+    <h1>Shop</h1>
+  </section>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+
+      <!-- Imported Products from index.html -->
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="undefined (1).jpg" alt="Women's Handbags" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Women’s Handbags</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.56 (3).jpeg" alt="Quality dresses" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Quality Dresses</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.25.03.jpeg" alt="Shoes" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Shoes</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.54 (2).jpeg" alt="Black Tracksuit" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Black Tracksuit</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.58 (2).jpeg" alt="White Tracksuit" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">White Tracksuit</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.54 (3).jpeg" alt="Gucci Suits" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Gucci Suits</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.54 (1).jpeg" alt="Hoodies" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Hoodies</p>
+        </div>
+      </div>
+
+      <div class="product-card group">
+        <div class="overflow-hidden">
+          <img src="WhatsApp Image 2025-11-01 at 14.24.59 (2).jpeg" alt="Men's Tracksuits" class="w-full h-[420px] object-cover object-[50%_50%]" />
+        </div>
+        <div class="pt-4 text-center">
+          <p class="name group-hover:underline">Men’s Tracksuits</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-neutral-600 flex flex-col sm:flex-row gap-4 sm:gap-8 items-center justify-between">
+      <p>© <span id="year"></span> Hotap Collections — Thika</p>
+      <p class="opacity-80">Luxury Shopping Experience</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const openMenuBtn = document.getElementById("openMenu");
+    const closeMenuBtn = document.getElementById("closeMenu");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("menuOverlay");
+
+    function openMenu() {
+      sideMenu.classList.add("active");
+      overlay.classList.add("active");
+      document.body.classList.add("menu-open");
+    }
+    function closeMenu() {
+      sideMenu.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    }
+
+    openMenuBtn.addEventListener("click", openMenu);
+    closeMenuBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</body>
+</html>

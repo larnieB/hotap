@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About — Hotap Collections</title>
+  <meta name="description" content="Discover the story behind Hotap Collections, Thika’s home for timeless luxury and modern style." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ink:#0b0b0b; --paper:#fff; }
+    body { font-family: Inter, system-ui; color: var(--ink); background: var(--paper); }
+
+    /* --- universal nav + menu overlay --- */
+    body.menu-open { overflow: hidden; }
+    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      z-index: 40; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .menu-overlay.active { opacity: 1; pointer-events: all; }
+    .side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background:#fff;
+      z-index: 50; transform: translateX(-100%); transition: transform .35s; display: flex; flex-direction: column;
+      padding: 2rem 1.25rem; box-shadow: 4px 0 16px rgba(0,0,0,.12); }
+    .side-menu.active { transform: translateX(0); }
+    .side-link { display: block; font-size: 1.125rem; font-weight: 600; padding: .5rem 0; }
+
+    /* --- hero section --- */
+    .about-hero {
+      background: url("https://images.unsplash.com/photo-1615898021345-71f04b6854d4?q=80&w=1920&auto=format&fit=crop") center/cover no-repeat;
+      height: 70vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .about-hero::after {
+      content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.4);
+    }
+    .about-hero h1 {
+      position: relative; z-index: 10;
+      color: #fff; font-family: "Playfair Display", serif;
+      text-transform: uppercase; letter-spacing: .15em;
+      font-size: clamp(42px, 8vw, 96px);
+    }
+
+    /* --- content sections --- */
+    .section-title {
+      font-family: "Playfair Display", serif;
+      font-size: 2rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 1.25rem;
+    }
+    .section-text {
+      color: #555;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+      <a href="index.html" class="text-white font-semibold tracking-widest uppercase">Hotap</a>
+      <nav class="flex items-center gap-6">
+        <button aria-label="Open bag" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7h12l-1 12H7L6 7z"/><path stroke-width="1.5" d="M9 7a3 3 0 116 0"/></svg>
+        </button>
+        <button aria-label="Search" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="1.5"/><path stroke-width="1.5" d="M20 20l-2.8-2.8"/></svg>
+        </button>
+        <button id="openMenu" aria-label="Open menu" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== OVERLAY & SIDE MENU ===== -->
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <aside id="sideMenu" class="side-menu">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="font-bold text-lg tracking-wide">Menu</h2>
+      <button id="closeMenu" class="text-neutral-500 hover:text-neutral-800">✕</button>
+    </div>
+    <nav class="space-y-3">
+      <a href="shop.html" class="side-link hover:text-neutral-800">Shop</a>
+      <a href="about.html" class="side-link hover:text-neutral-800">About</a>
+      <a href="index.html#contact" class="side-link hover:text-neutral-800">Contacts</a>
+      <a href="index.html#pickup" class="side-link hover:text-neutral-800">Pick-up Location</a>
+    </nav>
+  </aside>
+
+  <!-- ===== HERO ===== -->
+  <section class="about-hero">
+    <h1>About Us</h1>
+  </section>
+
+  <!-- ===== OUR STORY ===== -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
+    <div>
+      <h2 class="section-title">Our Story</h2>
+      <p class="section-text">
+        Founded in Thika, Hotap Collections was born from a passion for refined elegance and bold expression.
+        Every collection we curate celebrates timeless craftsmanship, individuality, and the beauty of simplicity.
+        From luxury dresses to statement accessories, Hotap stands for confidence, authenticity, and modern Kenyan sophistication.
+      </p>
+    </div>
+    <div>
+      <img src="https://images.unsplash.com/photo-1503341455253-b2e723bb3dbb?q=80&w=800&auto=format&fit=crop" alt="Our story" class="rounded-lg shadow-lg object-cover w-full h-[480px]" />
+    </div>
+  </section>
+
+  <!-- ===== PHILOSOPHY ===== -->
+  <section class="bg-neutral-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 grid md:grid-cols-2 gap-16 items-center">
+      <div class="order-2 md:order-1">
+        <img src="undefined (1).jpg" alt="Philosophy" class="rounded-lg shadow-lg object-cover w-full h-[480px]" />
+      </div>
+      <div class="order-1 md:order-2">
+        <h2 class="section-title">Our Philosophy</h2>
+        <p class="section-text">
+          We believe fashion is not just what you wear—it’s how you carry your story.
+          Each piece is designed or selected to align with the Hotap vision:
+          luxury that is inclusive, rooted in culture, and unapologetically bold.
+          Our design language bridges classic silhouettes with modern textures,
+          creating a harmony of comfort and confidence.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MISSION STATEMENT ===== -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 text-center">
+    <h2 class="section-title mb-6">Our Mission</h2>
+    <p class="max-w-3xl mx-auto section-text">
+      To redefine African luxury by merging global aesthetics with local craftsmanship,
+      empowering our customers to express who they are through timeless fashion.
+    </p>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-neutral-600 flex flex-col sm:flex-row gap-4 sm:gap-8 items-center justify-between">
+      <p>© <span id="year"></span> Hotap Collections — Thika</p>
+      <p class="opacity-80">Crafted for a luxury browsing experience</p>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Sidebar Menu
+    const openMenuBtn = document.getElementById("openMenu");
+    const closeMenuBtn = document.getElementById("closeMenu");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("menuOverlay");
+
+    function openMenu() {
+      sideMenu.classList.add("active");
+      overlay.classList.add("active");
+      document.body.classList.add("menu-open");
+    }
+    function closeMenu() {
+      sideMenu.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    }
+
+    openMenuBtn.addEventListener("click", openMenu);
+    closeMenuBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</body>
+</html>

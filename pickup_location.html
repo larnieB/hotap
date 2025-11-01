@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pick-Up Location — Hotap Collections</title>
+  <meta name="description" content="Visit Hotap Collections at Jeff K Centre, Ground Floor, Stall 34 — Thika CBD." />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --ink:#0b0b0b; --paper:#fff; }
+    body { font-family: Inter, system-ui; color: var(--ink); background: var(--paper); }
+
+    /* --- universal nav + menu overlay --- */
+    body.menu-open { overflow: hidden; }
+    .menu-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.5); backdrop-filter: blur(4px);
+      z-index: 40; opacity: 0; pointer-events: none; transition: opacity .3s; }
+    .menu-overlay.active { opacity: 1; pointer-events: all; }
+    .side-menu { position: fixed; top: 0; left: 0; height: 100%; width: 280px; background:#fff;
+      z-index: 50; transform: translateX(-100%); transition: transform .35s; display: flex; flex-direction: column;
+      padding: 2rem 1.25rem; box-shadow: 4px 0 16px rgba(0,0,0,.12); }
+    .side-menu.active { transform: translateX(0); }
+    .side-link { display: block; font-size: 1.125rem; font-weight: 600; padding: .5rem 0; }
+
+    /* --- hero --- */
+    .pickup-hero {
+      background: url("https://images.unsplash.com/photo-1501556466850-7c9fa1b7c1f2?q=80&w=1920&auto=format&fit=crop") center/cover no-repeat;
+      height: 60vh;
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+    }
+    .pickup-hero::after {
+      content: ""; position: absolute; inset: 0; background: rgba(0,0,0,0.45);
+    }
+    .pickup-hero h1 {
+      position: relative; z-index: 10;
+      color: #fff; font-family: "Playfair Display", serif;
+      text-transform: uppercase; letter-spacing: .15em;
+      font-size: clamp(42px, 8vw, 96px);
+    }
+
+    /* gallery */
+    .gallery img {
+      transition: transform .5s ease;
+    }
+    .gallery img:hover {
+      transform: scale(1.05);
+    }
+    iframe { border: 0; width: 100%; height: 400px; border-radius: 8px; }
+  </style>
+</head>
+<body>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="absolute top-0 left-0 right-0 z-30">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 flex items-center justify-between">
+      <a href="index.html" class="text-white font-semibold tracking-widest uppercase">Hotap</a>
+      <nav class="flex items-center gap-6">
+        <button aria-label="Open bag" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 7h12l-1 12H7L6 7z"/><path stroke-width="1.5" d="M9 7a3 3 0 116 0"/></svg>
+        </button>
+        <button aria-label="Search" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><circle cx="11" cy="11" r="7" stroke-width="1.5"/><path stroke-width="1.5" d="M20 20l-2.8-2.8"/></svg>
+        </button>
+        <button id="openMenu" aria-label="Open menu" class="p-2 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-width="1.5" d="M4 7h16M4 12h16M4 17h16"/></svg>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== OVERLAY & SIDE MENU ===== -->
+  <div id="menuOverlay" class="menu-overlay"></div>
+  <aside id="sideMenu" class="side-menu">
+    <div class="flex items-center justify-between mb-8">
+      <h2 class="font-bold text-lg tracking-wide">Menu</h2>
+      <button id="closeMenu" class="text-neutral-500 hover:text-neutral-800">✕</button>
+    </div>
+    <nav class="space-y-3">
+      <a href="shop.html" class="side-link hover:text-neutral-800">Shop</a>
+      <a href="about.html" class="side-link hover:text-neutral-800">About</a>
+      <a href="contacts.html" class="side-link hover:text-neutral-800">Contacts</a>
+      <a href="pickup_location.html" class="side-link hover:text-neutral-800">Pick-Up Location</a>
+    </nav>
+  </aside>
+
+  <!-- ===== HERO ===== -->
+  <section class="pickup-hero">
+    <h1>Pick-Up Location</h1>
+  </section>
+
+  <!-- ===== LOCATION DETAILS ===== -->
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+    <h2 class="font-['Playfair_Display'] text-3xl uppercase tracking-widest mb-6">Visit Our Store</h2>
+    <p class="text-neutral-600 max-w-2xl mx-auto leading-relaxed">
+      You can find <strong>Hotap Collections</strong> inside <strong>Jeff K Centre</strong>, Ground Floor, Stall 34 — right at the heart of Thika CBD.  
+      Enjoy a personalized shopping experience and same-day pickup for your online orders.
+    </p>
+  </section>
+
+  <!-- ===== GALLERY ===== -->
+  <section class="bg-neutral-50 py-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h3 class="font-['Playfair_Display'] text-2xl uppercase tracking-widest text-center mb-10">Our Store</h3>
+
+      <div class="gallery grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <img src="WhatsApp Image 2025-11-01 at 14.58.35.jpeg" alt="Shop front placeholder" class="rounded-lg shadow-lg object-cover w-full h-[320px]" />
+        <img src="WhatsApp Image 2025-11-01 at 14.58.36.jpeg" alt="Interior placeholder" class="rounded-lg shadow-lg object-cover w-full h-[320px] object-[0%_20%]" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MAP SECTION ===== -->
+  <section class="py-20">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <h3 class="font-['Playfair_Display'] text-2xl uppercase tracking-widest mb-6">Find Us on Maps</h3>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.729420512116!2d37.0735268!3d-1.0352343!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f4f003c448cb7%3A0xc1967101dd310b66!2sJeff%20K%20Centre%2C%20Thika!5e0!3m2!1sen!2ske!4v1698932848209!5m2!1sen!2ske"
+        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="border-t">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 text-sm text-neutral-600 flex flex-col sm:flex-row gap-4 sm:gap-8 items-center justify-between">
+      <p>© <span id="year"></span> Hotap Collections — Thika</p>
+      <p class="opacity-80">Crafted for a luxury browsing experience</p>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    const openMenuBtn = document.getElementById("openMenu");
+    const closeMenuBtn = document.getElementById("closeMenu");
+    const sideMenu = document.getElementById("sideMenu");
+    const overlay = document.getElementById("menuOverlay");
+
+    function openMenu() {
+      sideMenu.classList.add("active");
+      overlay.classList.add("active");
+      document.body.classList.add("menu-open");
+    }
+    function closeMenu() {
+      sideMenu.classList.remove("active");
+      overlay.classList.remove("active");
+      document.body.classList.remove("menu-open");
+    }
+
+    openMenuBtn.addEventListener("click", openMenu);
+    closeMenuBtn.addEventListener("click", closeMenu);
+    overlay.addEventListener("click", closeMenu);
+    document.addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+  </script>
+</body>
+</html>
